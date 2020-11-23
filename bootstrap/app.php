@@ -95,6 +95,9 @@ $app->routeMiddleware([
 $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 
+//JWT
+$app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
+
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes
@@ -114,8 +117,5 @@ $app->router->group([
 
 //Generator in Lumen
 $app->register(Flipbox\LumenGenerator\LumenGeneratorServiceProvider::class);
-
-//JWT
-$app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 
 return $app;

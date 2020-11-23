@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 
-use App\Model\HsTourMember;
+use App\Models\HsTourMember;
 
 use Ramsey\Uuid\Uuid as Generator;
 
@@ -40,24 +40,27 @@ class MemberController extends Controller
 
     public function doMemberLogin(Request $request) {
         $this->validate($request, [
-            'email' => 'required|email|',
+            'email' => 'required|email',
             'password' => 'required'
         ]);
 
-        if (!$authorized = Auth::attempt(['vch_email' => $request->email, 'vch_password' => Hash::make($request->password)])) {
+        $inputUser = [];
+        $inputUser['vch_email'] = $request->email;
+        $inputUser['vch_password'] = $request->password;
+
+        $memberData = HsTourMember::where('vch_email', $inputUser['vch_email'])->first();
+
+        if (!$authorized = Auth::attempt($inputUser)) {
             return response()->json(['error' => 1, 'message' => 'Invalid Credentials']);
         }
-
-        dd($this->respondWithToken($authorized));
-    }
-
-    //Generate JWT
-    protected function respondWithToken($token)
-    {
-        return response()->json([
-            'access_token' => $token,
-            'token_type' => 'bearer',
-            'expires_in' => auth()->factory()->getTTL() * 60
-        ]);
+        
+        return response()->json(
+            [
+                'error' => 0,
+                'message' => 'Login Successfully',
+                'memberdata' => $memberData,
+                'token' => $this->respondWithToken($authorized)
+            ]
+        );
     }
 }

@@ -16,7 +16,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => \App\Model\HsTourMember::class
+            'model' => \App\Models\HsTourMember::class
         ]
     ]
 ];

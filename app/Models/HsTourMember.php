@@ -1,18 +1,21 @@
 <?php
 
-namespace App\Model;
+namespace App\Models;
 
 use App\Traits\Uuid;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Tymon\JWTAuth\Contracts\JWTSubject;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
+use Laravel\Lumen\Auth\Authorizable;
 
 
-class HsTourMember extends Authenticatable implements JWTSubject
+
+class HsTourMember extends Model implements JWTSubject, AuthorizableContract, AuthenticatableContract
 {
-    use Uuid;
-    use SoftDeletes;
+    use Uuid, SoftDeletes, Authenticatable, Authorizable;
 
     //Model for table hs_tour_members
     protected $table = "hs_tour_members";
@@ -35,13 +38,15 @@ class HsTourMember extends Authenticatable implements JWTSubject
 
     protected $dates = ['deleted_at'];
 
-    public function getJWTIdentifier()
-    {
+    // public function usernname() {
+    //     return 'vch_email';
+    // }
+
+    public function getJWTIdentifier() {
         return $this->getKey();
     }
 
-    public function getJWTCustomClaims()
-    {
+    public function getJWTCustomClaims() {
         return [];
     }
 }
