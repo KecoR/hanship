@@ -16,4 +16,8 @@ class Controller extends BaseController
             'expires_in' => auth()->factory()->getTTL() * 60
         ], 200);
     }
+
+    public function getPostmanConfig() {
+        return response()->download(storage_path("Hanship API.postman_collection.json"));
+    }
 }

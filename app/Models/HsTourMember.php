@@ -17,7 +17,6 @@ class HsTourMember extends Model implements JWTSubject, AuthorizableContract, Au
 {
     use Uuid, SoftDeletes, Authenticatable, Authorizable;
 
-    //Model for table hs_tour_members
     protected $table = "hs_tour_members";
 
     protected $primaryKey = 'vch_member_id';
@@ -37,11 +36,7 @@ class HsTourMember extends Model implements JWTSubject, AuthorizableContract, Au
     public $incrementing = false;
 
     protected $dates = ['deleted_at'];
-
-    // public function usernname() {
-    //     return 'vch_email';
-    // }
-
+    
     public function getJWTIdentifier() {
         return $this->getKey();
     }

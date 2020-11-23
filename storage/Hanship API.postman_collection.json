@@ -1,0 +1,126 @@
+{
+	"info": {
+		"_postman_id": "b8d15e00-b055-41b8-a109-d69967f65efa",
+		"name": "Hanship API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register member",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "kevintest1@kevintest1.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "text"
+						},
+						{
+							"key": "full_name",
+							"value": "Kevin Cornelius",
+							"type": "text"
+						},
+						{
+							"key": "phone",
+							"value": "081212345678",
+							"type": "text"
+						},
+						{
+							"key": "password_confirmation",
+							"value": "12345678",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8000/api/member/register",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"member",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login member",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "kevintest1@kevintest1.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:8000/api/member/login",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"member",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Island Data",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC9sb2NhbGhvc3Q6ODAwMFwvYXBpXC9tZW1iZXJcL2xvZ2luIiwiaWF0IjoxNjA2MTM0MDQwLCJleHAiOjE2MDYxMzc2NDAsIm5iZiI6MTYwNjEzNDA0MCwianRpIjoicmZsVW1NQ0dEVU1lWGtSdSIsInN1YiI6IjIwMTZlOWRjLWNmODgtNDUxMy1iZWM1LWE5YjgyMmJhZTMxNSIsInBydiI6IjAwOTdhODJlMzExMTVjOTNkNzc5MjAxNTZkZjYzNDkwMWYyNTZhZGYifQ.V-HkEeE7VFbQTppStGFVW44m8ZKaZ-a31TD4MYoodHE",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "localhost:8000/api/member/getIslands",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"member",
+						"getIslands"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -12,7 +12,9 @@
 */
 
 $router->get('/', function () use ($router) {
-    return $router->app->version();
+    $home =  $router->app->version();
+    $home = $home . "</br></br> <a href='/getPostmanConfig'>Download postman config</a>";
+    return $home;
 });
 
 $router->group(['prefix' => 'api'], function() use($router) {
@@ -21,6 +23,8 @@ $router->group(['prefix' => 'api'], function() use($router) {
 
 
     $router->group(['middleware' => "auth"], function($router) {
-        
+        $router->get('/member/getIslands', 'MemberactionController@getIslands');
     });
 });
+
+$router->get('/getPostmanConfig', 'Controller@getPostmanConfig');
