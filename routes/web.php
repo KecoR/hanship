@@ -18,4 +18,9 @@ $router->get('/', function () use ($router) {
 $router->group(['prefix' => 'api'], function() use($router) {
     $router->post('/member/register', 'MemberController@doMemberRegister');
     $router->post('/member/login', 'MemberController@doMemberLogin');
+
+
+    $router->group(['middleware' => "auth"], function($router) {
+        
+    });
 });
